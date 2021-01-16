@@ -1,30 +1,30 @@
-const db = require("../models");
+let db = require("../models");
 
 module.exports = {
-    findAll: function(req, res) {
+    findAll: function(request, respond) {
       db.GoogleBooks
-        .find(req.query)
+        .find(request.query)
         .sort({ date: -1 })
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
+        .then(dbModel => respond.json(dbModel))
+        .catch(error => respond.status(422).json(error));
     },
-    findOne: function(req, res) {
+    findOne: function(request, respond) {
       db.GoogleBooks
-        .findOne({id: req.params.id})
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
+        .findOne({id: request.params.id})
+        .then(dbModel => respond.json(dbModel))
+        .catch(error => respond.status(422).json(error));
     },
-    save: function(req, res) {
+    save: function(request, respond) {
       db.GoogleBooks
-        .create(req.body)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
+        .create(request.body)
+        .then(dbModel => respond.json(dbModel))
+        .catch(error => respond.status(422).json(error));
     },
-    remove: function(req, res) {
+    remove: function(request, respond) {
       db.GoogleBooks
-        .findById({ _id: req.params.id })
+        .findById({ _id: request.params.id })
         .then(dbModel => dbModel.remove())
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
+        .then(dbModel => respond.json(dbModel))
+        .catch(error => respond.status(422).json(error));
     }
   };
