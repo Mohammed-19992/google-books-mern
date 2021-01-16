@@ -20,6 +20,7 @@ module.exports = {
         .then(dbModel => respond.json(dbModel))
         .catch(error => respond.status(422).json(error));
     },
+    // fixed
     remove: function(request, respond) {
       db.GoogleBooks
         .findById({ _id: request.params.id })
