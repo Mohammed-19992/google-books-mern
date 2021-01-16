@@ -16,7 +16,6 @@ class Main extends Component {
     };
 
 
-    // Create function to search for books through Google API
     searchBooks = () => {
         API.googleBooks(this.state.search)
             .then(respond => {
@@ -29,7 +28,6 @@ class Main extends Component {
             
     };
 
-    // Create function to handle input data
     handleInputChange = event => {
         const {name, value} = event.target;
         this.setState({
@@ -37,7 +35,6 @@ class Main extends Component {
         });
     };
 
-    // Create function to handle form data submission
     handleFormSubmit = event => {
         event.preventDefault();
         this.searchBooks();
