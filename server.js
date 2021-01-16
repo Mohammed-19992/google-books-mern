@@ -24,7 +24,7 @@ app.use(routes);
 
 // Connecting to Mongo DB
 const MONGODB_URI = 
-process.env.MONGODB_URI || "mongodb://localhost/googlebooks";
+process.env.MONGODB_URI || "mongodb://localhost/google-books";
 mongoose.connect(MONGODB_URI, 
   {useUnifiedTopology: true,
   useNewUrlParser: true});
