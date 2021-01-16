@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./pages/Home";
-import Saved from "./pages/Saved";
+import Main from "./pages/Main";
+import SavedBooks from "./pages/SavedBooks";
 import "./App.css";
 
 
@@ -14,8 +14,8 @@ class App extends Component {
       <Router>
       <div>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/saved" component={Saved} />
+          <Route exact path="/" component={Main} />
+          <Route exact path="/saved" component={SavedBooks} />
         </Switch>
       </div>
       </Router>

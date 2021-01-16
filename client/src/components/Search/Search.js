@@ -9,8 +9,8 @@ export function Input(props) {
     )
 }
 
-export function SubmitBtn(props) {
+export function Submit(props) {
     return (
-        <button {...props} className="btn submitBtn" style={{backgroundColor: "#2196f3", color: "white", marginBottom: "10px"}}>Search</button>
+        <button {...props} className="btn Submit" style={{backgroundColor: "white", color: "dark", marginBottom: "10px"}}>Search</button>
     )
 }

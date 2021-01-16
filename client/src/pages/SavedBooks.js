@@ -3,9 +3,9 @@ import { Container } from "../components/Grid/Grid";
 import Nav from "../components/Nav/Nav";
 import Jumbotron from "../components/Jumbotron/Jumbotron";
 import API from '../utils/API';
-import SavedList from "../components/SavedList/SavedList";
+import ChosenList from "../components/ChosenList/ChosenList";
 
-class Saved extends Component {
+class SavedBooks extends Component {
 
     state = {
         savedBooks: []
@@ -17,25 +17,25 @@ class Saved extends Component {
 
     deleteGoogleBook = currentBook => {
         API.deleteBook( currentBook.id )
-        .then(res => {
-            console.log("You deleted this book:", res);
+        .then(respond => {
+            console.log("Book deleted:", respond);
             this.getBooks();
         })
-        .catch(err => {
-            console.log("This is the error", err);
+        .catch(error => {
+            console.log("Erro", error);
         })
     }
 
     getBooks = () => {
         API.getBooks()
-        .then(res => {
+        .then(respond => {
             this.setState({
-                savedBooks: res.data
+                savedBooks: respond.data
             })
-            console.log("This is the res from getBooks", res);
+            console.log("respond", respond);
         })
-        .catch(err => {
-            console.log("This is the error", err);
+        .catch(error => {
+            console.log("Error", error);
         })
     }
 
@@ -47,13 +47,13 @@ class Saved extends Component {
                 <Container fluid>
                 <Jumbotron />
                 {this.state.savedBooks.length ? (
-                    <SavedList 
+                    <ChosenList 
                     bookState={this.state.savedBooks}
                     deleteGoogleBook={this.deleteGoogleBook}
                     >
-                    </SavedList>
+                    </ChosenList>
                 ) : (
-                    <h5>No results to display</h5>
+                    <h5>Book not found</h5>
                 )}
                 </Container>
             </div>
@@ -61,4 +61,4 @@ class Saved extends Component {
     }
 }
 
-export default Saved
+export default SavedBooks

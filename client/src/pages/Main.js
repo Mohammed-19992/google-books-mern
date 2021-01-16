@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { Container } from "../components/Grid/Grid";
 import Nav from "../components/Nav/Nav";
 import Jumbotron from "../components/Jumbotron/Jumbotron";
-import {Input, SubmitBtn} from "../components/Search/Search";
+import {Input, Submit} from "../components/Search/Search";
 import API from "../utils/API";
-import ResultList from "../components/ResultList/ResultList";
+import Results from "../components/Results/Results";
+import "./style.css";
 
-class Home extends Component {
+
+class Main extends Component {
 
     state = {
         books: [],
@@ -17,13 +19,13 @@ class Home extends Component {
     // Create function to search for books through Google API
     searchBooks = () => {
         API.googleBooks(this.state.search)
-            .then(res => {
-                console.log("This is res.data", res.data.items)
+            .then(respond => {
+                console.log("This is res.data", respond.data.items)
                 this.setState({
-                books: res.data.items,
+                books: respond.data.items,
                 search: ""
             })})
-            .catch(err => console.log(err));
+            .catch(error => console.log(error));
             
     };
 
@@ -51,36 +53,34 @@ class Home extends Component {
             image: currentBook.image,
             link: currentBook.link
         })
-        .then(res => console.log("Successful POST to DB!", res))
-        .catch(err => console.log("this is the error", err));
+        .then(respond => console.log("Successful POST to DB!", respond))
+        .catch(error => console.log("this is the error", error));
     }
 
     render() {
         return (
-            <div>
+            <div id="div">
                 <Nav />
                 <Container fluid>
                 <Jumbotron />
                 <form>
-                    <h5>Search for books</h5>
+                    <h5 id="h5">Search for your favorite books</h5>
                     <Input 
                         value={this.state.search}
                         onChange={this.handleInputChange}
                         name="search"
-                        placeholder="e.g. Harry Potter"
+                        placeholder="e.g. Still Living There"
                     />
-                    <SubmitBtn onClick={this.handleFormSubmit}/>
+                    <Submit onClick={this.handleFormSubmit}/>
                 </form>
                 
                 {this.state.books.length ? (
-                    <ResultList 
+                    <Results
                     bookState={this.state.books}
                     saveGoogleBook={this.saveGoogleBook}>
-                    </ResultList>
+                    </Results>
                 ) : (
                     <div>
-                        <hr/>
-                    <p style={{fontStyle: "italic"}}>No results to display</p>
                     </div>
                 )}
                 
@@ -90,4 +90,4 @@ class Home extends Component {
     }
 }
 
-export default Home
+export default Main
