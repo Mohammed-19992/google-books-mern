@@ -1,6 +1,5 @@
 let mongoose = require("mongoose");
 let Schema = mongoose.Schema;
-
 let bookSchema = new Schema({
     id: {type: String, require: true},
     title: { type: String, require: true},
